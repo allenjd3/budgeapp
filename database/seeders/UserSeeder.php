@@ -10,7 +10,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'email' => 'admin@budgeapp.test'
+            'email' => 'admin@budgeapp.test',
         ]);
 
         User::factory(20)->create();
