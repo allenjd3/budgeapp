@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Budget;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BudgetFactory extends Factory
@@ -13,6 +14,9 @@ class BudgetFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
+            'for_month' => now()->startOfMonth()
+                ->subMonth(rand(1, 12)),
+            'user_id' => User::factory(),
         ];
     }
 }

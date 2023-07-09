@@ -31,7 +31,8 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
-    Route::get('budget', [BudgetsController::class, 'index'])->name('budgets.index');
+    Route::get('budgets', [BudgetsController::class, 'index'])->name('budgets.index');
+    Route::get('budgets/{budget:uuid}', [BudgetsController::class, 'show'])->name('budgets.show');
 });
 
 Route::middleware('auth')->group(function () {
