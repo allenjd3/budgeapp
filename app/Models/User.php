@@ -14,6 +14,7 @@ class User extends Authenticatable
     protected $guarded = [];
 
     protected $hidden = [
+        'id',
         'password',
         'remember_token',
     ];
@@ -22,6 +23,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected static function booted()
+    {
+        self::creating(function ($user) {
+            $user->uuid = str()->orderedUuid();
+        });
+    }
 
     public function budgets()
     {

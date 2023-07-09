@@ -1,8 +1,9 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-import { PageProps } from "@/types";
+import {Budget, PageProps} from "@/types";
 
 export default function Index({ auth, budgets }: PageProps) {
+    console.log(budgets)
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -19,6 +20,16 @@ export default function Index({ auth, budgets }: PageProps) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
                             Here are your budgets
+                            {budgets.map((budget: Budget) => {
+                                const date = new Date(budget.for_month);
+                                const formattedDate = date.toLocaleString('default', { month: 'long', year: 'numeric' });
+                                    return (
+                                        <div key={budget.uuid}>
+                                            <a href={route('dashboard.budgets.show', budget.uuid)}>{budget.name} for month- { formattedDate }</a>
+                                        </div>
+                                    )
+                                }
+                            )}
                         </div>
                     </div>
                 </div>
