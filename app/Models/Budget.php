@@ -21,7 +21,7 @@ class Budget extends Model
         parent::booted();
 
         self::creating(function ($budget) {
-            $budget->uuid = str()->orderedUuid();
+            $budget->uuid = str()->orderedUuid()->toString();
         });
     }
 

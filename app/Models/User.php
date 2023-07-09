@@ -27,7 +27,7 @@ class User extends Authenticatable
     protected static function booted()
     {
         self::creating(function ($user) {
-            $user->uuid = str()->orderedUuid();
+            $user->uuid = str()->orderedUuid()->toString();
         });
     }
 

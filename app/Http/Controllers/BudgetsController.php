@@ -6,6 +6,10 @@ use App\Models\Budget;
 
 class BudgetsController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Budget::class, 'budget');
+    }
+
     public function index()
     {
         return inertia('Budgets/Index', [
