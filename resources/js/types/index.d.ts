@@ -1,9 +1,11 @@
 export interface User {
+    id: number;
     uuid: string;
     name: string;
     email: string;
     account: string;
     email_verified_at: string;
+    created_at: string;
 }
 
 export interface Paginated<T> {
@@ -36,6 +38,7 @@ export interface Budget {
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     auth: {
         user: User;
+        isImpersonating: boolean;
     };
     users: Paginated<User>;
     budgets: Budget[];

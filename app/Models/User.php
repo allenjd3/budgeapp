@@ -15,7 +15,6 @@ class User extends Authenticatable
     protected $guarded = [];
 
     protected $hidden = [
-        'id',
         'password',
         'remember_token',
     ];
@@ -36,5 +35,15 @@ class User extends Authenticatable
     public function budgets()
     {
         return $this->hasMany(Budget::class);
+    }
+
+    public function canImpersonate()
+    {
+        return $this->account->isAdmin();
+    }
+
+    public function canBeImpersonated()
+    {
+        return ! $this->account->isAdmin();
     }
 }
