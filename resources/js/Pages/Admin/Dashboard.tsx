@@ -2,7 +2,9 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import {PageProps, User} from "@/types";
 
-export default function Dashboard({ auth }: PageProps) {
+export default function Dashboard({ auth, users }: PageProps) {
+
+    console.log(users)
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -21,6 +23,11 @@ export default function Dashboard({ auth }: PageProps) {
                             You're logged in!
                         </div>
                     </div>
+                </div>
+                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    {users.data?.map((user: User) => (
+                        <div key={user.uuid}>{user.name}</div>
+                    ))}
                 </div>
             </div>
         </AuthenticatedLayout>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BudgetsController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -26,11 +27,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::prefix('dashboard')->name('dashboard.')->group(function () {
+Route::prefix('dashboard')->middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
     Route::get('budgets', [BudgetsController::class, 'index'])->name('budgets.index');
     Route::get('budgets/{budget:uuid}', [BudgetsController::class, 'show'])->name('budgets.show');
 });
