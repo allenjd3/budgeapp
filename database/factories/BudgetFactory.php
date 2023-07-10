@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Enums\AccountStatus;
 use App\Models\Budget;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
