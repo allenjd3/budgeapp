@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Budget;
+use App\Models\Item;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -16,6 +17,7 @@ class BudgetSeeder extends Seeder
                     ->state([
                         'user_id' => $user->id,
                     ])
+                    ->has(Item::factory())
                     ->create();
             });
     }
