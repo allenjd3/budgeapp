@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('category');
+            $table->tinyInteger('category');
             $table->foreignId('budget_id')->constrained();
             $table->string('uuid')->unique();
             $table->timestamps();
