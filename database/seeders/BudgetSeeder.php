@@ -17,7 +17,7 @@ class BudgetSeeder extends Seeder
                     ->state([
                         'user_id' => $user->id,
                     ])
-                    ->has(Item::factory())
+                    ->has(Item::factory(20))
                     ->create();
             });
     }

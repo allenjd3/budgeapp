@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\BudgetCategory;
 use App\Models\Budget;
 
 class BudgetsController extends Controller
@@ -21,7 +22,10 @@ class BudgetsController extends Controller
     public function show(Budget $budget)
     {
         return inertia('Budgets/Show', [
-            'budget' => $budget,
+            'budget' => $budget->load('items'),
+            'categories' => collect($budget->items)
+                ->groupBy(fn ($item) => $item->category->label()),
+            'availableCategories' => BudgetCategory::toArray(),
         ]);
     }
 }

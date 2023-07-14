@@ -28,11 +28,22 @@ export interface Paginated<T> {
     total: number;
 }
 
+export interface Item {
+    name: string;
+    uuid: string;
+    category: string;
+}
+
 export interface Budget {
     name: string;
     for_month: string;
     uuid: string;
     user_id: number;
+}
+
+export interface AvailableCategory {
+    key: string;
+    name: string;
 }
 
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
@@ -42,5 +53,7 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
     };
     users: Paginated<User>;
     budgets: Budget[];
+    categories: Category[];
+    availableCategories: AvailableCategory[];
     budget: Budget;
 };
