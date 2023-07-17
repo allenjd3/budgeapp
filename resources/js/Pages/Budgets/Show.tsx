@@ -5,7 +5,6 @@ import Card from "@/Components/Card";
 import BudgetItem from "@/Components/BudgetItem";
 
 export default function Show({ auth, budget, categories, availableCategories }: BudgetPageProps) {
-    console.log(categories)
     return (
         <AuthenticatedLayout
             user={auth.user}
