@@ -1,10 +1,11 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-import {PageProps} from "@/types";
+import {Budget, BudgetPageProps} from "@/types";
 import Card from "@/Components/Card";
 import BudgetItem from "@/Components/BudgetItem";
 
-export default function Index({ auth, budget, categories, availableCategories }: PageProps) {
+export default function Show({ auth, budget, categories, availableCategories }: BudgetPageProps) {
+    console.log(categories)
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -23,12 +24,12 @@ export default function Index({ auth, budget, categories, availableCategories }:
                         {budget.name} for month- {budget.for_month}
                     </div>
                 </Card>
-                {Object.entries(categories).map(([key, items]: [string, Item[]]) => {
+                {Object.entries(categories).map(([key, items]: [string, Budget[]]) => {
                     return (
-                        <Card key={key}>
+                        <Card key={`category-${key}`}>
                             <h3 className="text-xl mb-6 text-gray-900">{key}</h3>
-                            {items.map((item: Item) => {
-                                return <BudgetItem key={item.uuid} item={item} />;
+                            {items.map((item: Budget) => {
+                                return <BudgetItem key={`budget-item-${item.uuid}`} item={item} />;
                             })}
                         </Card>
                     );
@@ -38,7 +39,7 @@ export default function Index({ auth, budget, categories, availableCategories }:
                     <form>
                        <select>
                            {Object.entries(availableCategories).map(([key, name]: [string, string]) => {
-                               return <option value={key}>{name}</option>
+                               return <option key={`available-categories-${key}`} value={key}>{name}</option>
                            })}
                        </select>
                     </form>

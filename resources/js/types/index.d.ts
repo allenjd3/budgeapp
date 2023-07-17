@@ -41,19 +41,27 @@ export interface Budget {
     user_id: number;
 }
 
-export interface AvailableCategory {
-    key: string;
-    name: string;
-}
-
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     auth: {
         user: User;
         isImpersonating: boolean;
     };
-    users: Paginated<User>;
-    budgets: Budget[];
-    categories: Category[];
-    availableCategories: AvailableCategory[];
-    budget: Budget;
 };
+
+export type AdminPageProps = PageProps & {
+    users: Paginated<User>;
+}
+
+export type BudgetsPageProps = PageProps & {
+    budgets: Budget[];
+}
+
+export type BudgetPageProps = PageProps & {
+    budget: Budget;
+    categories: {
+        [key: string]: Budget[];
+    };
+    availableCategories: {
+        [key: string]: string;
+    };
+}

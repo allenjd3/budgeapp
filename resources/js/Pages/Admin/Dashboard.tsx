@@ -1,10 +1,9 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import {Head, Link} from "@inertiajs/react";
-import {PageProps, User} from "@/types";
-import Card from "@/Components/Card";
+import {AdminPageProps} from "@/types";
 import UsersBlock from "@/Components/UsersBlock";
 
-export default function Dashboard({ auth, users }: PageProps) {
+export default function Dashboard({ auth, users }: AdminPageProps) {
     return (
         <AuthenticatedLayout
             user={auth.user}
