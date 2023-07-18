@@ -1,6 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-import {Budget, BudgetPageProps} from "@/types";
+import { Budget, BudgetPageProps } from "@/types";
 import Card from "@/Components/Card";
 import BudgetItem from "@/Components/BudgetItem";
 

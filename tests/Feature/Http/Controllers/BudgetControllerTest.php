@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\BudgetCategory;
 use App\Models\Budget;
 use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
@@ -43,4 +44,26 @@ test('users cannot see budgets that dont belong to them', function () {
     $this->actingAs(User::factory()->create())
         ->get(route('dashboard.budgets.show', $budget))
         ->assertStatus(403);
+});
+
+test('show route is protected', function () {
+    $budget = Budget::factory()->create();
+
+    $this->get(route('dashboard.budgets.show', $budget))
+        ->assertRedirect(route('login'));
+});
+
+test('show route should have budget categories and available categories', function () {
+    $budget = Budget::factory()
+        ->hasItems(5)
+        ->create();
+
+    $this->actingAs($budget->user)
+        ->get(route('dashboard.budgets.show', $budget))
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('Budgets/Show')
+            ->has('budget')
+            ->has('categories')
+            ->has('availableCategories', count(BudgetCategory::cases()))
+        );
 });

@@ -1,6 +1,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
-import {Budget, BudgetsPageProps} from "@/types";
+import { Budget, BudgetsPageProps } from "@/types";
 
 export default function Index({ auth, budgets }: BudgetsPageProps) {
     console.log(budgets)
