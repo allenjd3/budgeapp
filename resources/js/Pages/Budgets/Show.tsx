@@ -3,6 +3,7 @@ import { Head } from "@inertiajs/react";
 import { Budget, BudgetPageProps } from "@/types";
 import Card from "@/Components/Card";
 import BudgetItem from "@/Components/BudgetItem";
+import Form from "@/Pages/Budgets/Form";
 
 export default function Show({ auth, budget, categories, availableCategories }: BudgetPageProps) {
     return (
@@ -33,16 +34,7 @@ export default function Show({ auth, budget, categories, availableCategories }: 
                         </Card>
                     );
                 })}
-                <Card>
-                    <h3 className="text-xl mb-6 text-gray-900">Add Item</h3>
-                    <form>
-                       <select>
-                           {Object.entries(availableCategories).map(([key, name]: [string, string]) => {
-                               return <option key={`available-categories-${key}`} value={key}>{name}</option>
-                           })}
-                       </select>
-                    </form>
-                </Card>
+                <Form availableCategories={availableCategories} budgetId={budget.uuid} />
             </div>
         </AuthenticatedLayout>
     );

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BudgetsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['aut
 Route::prefix('dashboard')->middleware(['auth', 'verified'])->name('dashboard.')->group(function () {
     Route::get('budgets', [BudgetsController::class, 'index'])->name('budgets.index');
     Route::get('budgets/{budget:uuid}', [BudgetsController::class, 'show'])->name('budgets.show');
+    Route::post('budgets/{budget:uuid}/items', [ItemsController::class, 'store'])->name('budgets.items.store');
 });
 
 Route::middleware('auth')->group(function () {
