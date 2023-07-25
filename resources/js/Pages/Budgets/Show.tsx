@@ -5,10 +5,11 @@ import Card from "@/Components/Card";
 import BudgetItem from "@/Components/BudgetItem";
 import Form from "@/Pages/Budgets/Form";
 
-export default function Show({ auth, budget, categories, availableCategories }: BudgetPageProps) {
+export default function Show({ auth, budget, categories, availableCategories, flash }: BudgetPageProps) {
     return (
         <AuthenticatedLayout
             user={auth.user}
+            flash={flash}
             isImpersonating={auth.isImpersonating}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">

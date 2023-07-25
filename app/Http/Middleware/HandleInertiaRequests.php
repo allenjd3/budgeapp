@@ -33,6 +33,11 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            'flash' => [
+                'message' => $request->session()->get('message'),
+                'type' => $request->session()->get('type'),
+                'uuid' => $request->session()->get('uuid'),
+            ],
         ]);
     }
 }

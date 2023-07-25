@@ -41,11 +41,18 @@ export interface Budget {
     user_id: number;
 }
 
+export interface FlashMessage {
+    message: string;
+    type: string;
+    uuid: string;
+}
+
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     auth: {
         user: User;
         isImpersonating: boolean;
     };
+    flash: FlashMessage;
 };
 
 export type AdminPageProps = PageProps & {

@@ -1,12 +1,13 @@
-import { useState, PropsWithChildren, ReactNode } from 'react';
+import {useState, PropsWithChildren, ReactNode, useEffect} from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import { User } from '@/types';
+import FlashMessage from "@/Components/FlashMessage";
 
-export default function Authenticated({ user, isImpersonating, header, children }: PropsWithChildren<{ user: User, isImpersonating: boolean, header?: ReactNode }>) {
+export default function Authenticated({ user, isImpersonating, header, children, flash }: PropsWithChildren<{ user: User, isImpersonating: boolean, header?: ReactNode, flash: {message: string, type: string, uuid: string} }>) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
@@ -129,6 +130,12 @@ export default function Authenticated({ user, isImpersonating, header, children 
             )}
 
             <main>{children}</main>
+
+            <FlashMessage
+                message={flash?.message}
+                type={flash?.type}
+                uuid={flash?.uuid}
+            />
         </div>
     );
 }

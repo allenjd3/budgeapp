@@ -2,11 +2,11 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import { Budget, BudgetsPageProps } from "@/types";
 
-export default function Index({ auth, budgets }: BudgetsPageProps) {
-    console.log(budgets)
+export default function Index({ auth, budgets, flash }: BudgetsPageProps) {
     return (
         <AuthenticatedLayout
             user={auth.user}
+            flash={flash}
             isImpersonating={auth.isImpersonating}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
